@@ -1,0 +1,5 @@
+.title {
+  @apply font-danton font-extrabold text-gradient whitespace-pre-wrap w-max
+  text-[56px] leading:[54px] tracking-[-0.2px]
+  lg:text-[67px] lg:leading-[65px] lg:tracking-[-0.3px];
+}
