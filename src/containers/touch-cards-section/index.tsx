@@ -1,4 +1,5 @@
 "use client";
+import cn from "@utils/cn";
 import styles from "./touch-cards-section.module.css";
 import TouchSectionCard, { TouchSectionCardProps } from "./touch-section-card";
 
@@ -36,9 +37,11 @@ const cards: TouchSectionCardProps[] = [
 
 const TouchCardsSection: React.FC<TouchCardsSectionProps> = ({ isMobile }) => {
   return (
-    <section className="h-screen w-full flex flex-col py-[125px] px-10 lg:p-[125px] gap-10 box-border">
-      <h1 className={styles.title}>every touch is{"\n"} pure power.</h1>
-      <div className="flex gap-5 flex-1 overflow-hidden">
+    <section className="h-screen w-full flex flex-col justify-center py-[100px] md:py-[125px] px-[30px] lg:px-40 xl:p-[125px] gap-10 box-border">
+      <h1 className={cn(styles["title"], "text-gradient")}>
+        every touch is{"\n"} pure power.
+      </h1>
+      <div className={styles["cards-container"]}>
         {cards.map((c) => (
           <TouchSectionCard key={c.title} {...c} />
         ))}

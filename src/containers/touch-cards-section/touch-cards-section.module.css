@@ -1,5 +1,20 @@
 .title {
-  @apply font-danton font-extrabold text-gradient whitespace-pre-wrap w-max
-  text-[56px] leading:[54px] tracking-[-0.2px]
+  @apply font-danton font-extrabold whitespace-pre-wrap w-max
+  text-[40px] leading-[39px] tracking-[-0.3px]
+  md:text-[56px] md:leading-[54px] md:tracking-[-0.2px]
   lg:text-[67px] lg:leading-[65px] lg:tracking-[-0.3px];
+}
+
+.cards-container {
+  @apply flex gap-5 w-full overflow-x-auto;
+}
+
+.cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .cards-container::-webkit-scrollbar {
+    display: none;
+  }
 }
