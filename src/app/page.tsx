@@ -8,6 +8,8 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import SSCanvasScrollSection from "@containers/ss-canvas-scroll-section";
 import PerksCanvasScrollSection from "@containers/perks-canvas-scroll-section";
+import ProtectDividerSection from "@containers/protect-divider-section";
+import CallToActionSection from "@containers/call-to-action-section";
 
 export default async function Home() {
   const { device } = userAgent({ headers: await headers() });
@@ -21,6 +23,8 @@ export default async function Home() {
       {/* <TouchCardsSection /> */}
       {/* <SSCanvasScrollSection /> */}
       <PerksCanvasScrollSection />
+      <ProtectDividerSection />
+      <CallToActionSection isMobile={device.type === "mobile"} />
     </>
   );
 }
