@@ -1,9 +1,52 @@
 "use client";
-
 import { useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import cn from "@utils/cn";
+
+type EaseString =
+  | "none"
+  | "power1"
+  | "power1.in"
+  | "power1.out"
+  | "power1.inOut"
+  | "power2"
+  | "power2.in"
+  | "power2.out"
+  | "power2.inOut"
+  | "power3"
+  | "power3.in"
+  | "power3.out"
+  | "power3.inOut"
+  | "power4"
+  | "power4.in"
+  | "power4.out"
+  | "power4.inOut"
+  | "back"
+  | "back.in"
+  | "back.out"
+  | "back.inOut"
+  | "bounce"
+  | "bounce.in"
+  | "bounce.out"
+  | "bounce.inOut"
+  | "circ"
+  | "circ.in"
+  | "circ.out"
+  | "circ.inOut"
+  | "elastic"
+  | "elastic.in"
+  | "elastic.out"
+  | "elastic.inOut"
+  | "expo"
+  | "expo.in"
+  | "expo.out"
+  | "expo.inOut"
+  | "sine"
+  | "sine.in"
+  | "sine.out"
+  | "sine.inOut"
+  | ({} & string);
 
 type CanvasScrollProps = {
   href: string;
@@ -11,7 +54,9 @@ type CanvasScrollProps = {
   padLength?: number;
   canvasClassName?: string;
   containerClassName?: string;
-  ease?: string;
+  easeTo?: EaseString;
+  easeUpdate?: EaseString;
+  duration?: number;
 };
 
 const CanvasScrollAnimation = ({
@@ -19,7 +64,9 @@ const CanvasScrollAnimation = ({
   frameCount,
   canvasClassName,
   containerClassName,
-  ease = "sine",
+  easeTo = "power1.inOut",
+  easeUpdate = "power1.in",
+  duration = 0.15,
 }: CanvasScrollProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -66,10 +113,10 @@ const CanvasScrollAnimation = ({
     const updateFrame = (targetProgress: number) => {
       gsap.to(smoothProgress, {
         current: targetProgress,
-        duration: 0.15,
-        ease: "power1.inOut",
+        duration,
+        ease: easeTo,
         onUpdate: () => {
-          const easedProgress = gsap.parseEase("power1.in")(
+          const easedProgress = gsap.parseEase(easeUpdate)(
             smoothProgress.current
           );
           const rawFrameIndex = easedProgress * frameCount;
