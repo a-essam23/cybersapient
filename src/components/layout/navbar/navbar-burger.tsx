@@ -8,13 +8,13 @@ interface NavbarBurgerProps {
 const NavbarBurger: React.FC<NavbarBurgerProps> = ({ isOpen, onClick }) => {
   return (
     <button
-      className="flex border border-white/20 w-[80px] h-[80px] justify-center items-center cursor-pointer"
+      className="flex border border-white/20 w-[65px] lg:w-[80px] h-[65px] lg:h-[80px] justify-center items-center cursor-pointer aspect-square"
       onClick={onClick}
     >
-      <div className="flex flex-col justify-between h-[22px] overflow-hidden">
+      <div className="flex flex-col justify-between overflow-hidden w-[22px] h-max aspect-square">
         <div
           className={cn(
-            "transition ease-linear w-[22px] h-0.5 bg-white duration-[400ms] delay-75",
+            "transition ease-linear w-full h-0.5 bg-white duration-[400ms] delay-75",
             {
               "rotate-45 translate-y-[500%] scale-x-125": isOpen,
             }
@@ -22,7 +22,7 @@ const NavbarBurger: React.FC<NavbarBurgerProps> = ({ isOpen, onClick }) => {
         ></div>
         <div
           className={cn(
-            "transition ease-linear w-[22px] h-0.5 bg-white translate-x-0 opacity-100 duration-[400ms] delay-75",
+            "transition ease-linear w-full h-0.5 bg-white translate-x-0 opacity-100 duration-[400ms] delay-75",
             {
               "-translate-x-full opacity-0": isOpen,
             }
@@ -30,7 +30,7 @@ const NavbarBurger: React.FC<NavbarBurgerProps> = ({ isOpen, onClick }) => {
         ></div>
         <div
           className={cn(
-            "transition ease-linear w-[22px] h-0.5 bg-white duration-[400ms] delay-75",
+            "transition ease-linear w-full h-0.5 bg-white duration-[400ms] delay-75",
             {
               "-rotate-45 -translate-y-[500%] scale-x-125": isOpen,
             }

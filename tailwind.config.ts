@@ -15,6 +15,15 @@ export default {
       colors: {
         dimmed: "rgb(108, 108, 108)",
       },
+      keyframes: {
+        fadein: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+      },
+      animation: {
+        fadein: "2s ease 0s 1 normal none running fadein",
+      },
     },
   },
   plugins: [],

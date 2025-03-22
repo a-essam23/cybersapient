@@ -5,3 +5,8 @@
 .text-gradient {
   @apply inline-block bg-[linear-gradient(170deg,_rgb(0,0,0),_rgb(85,85,85))] text-transparent bg-clip-text;
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

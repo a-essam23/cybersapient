@@ -3,10 +3,6 @@ import cn from "@utils/cn";
 import styles from "./touch-cards-section.module.css";
 import TouchSectionCard, { TouchSectionCardProps } from "./touch-section-card";
 
-interface TouchCardsSectionProps {
-  isMobile?: boolean;
-}
-
 const cards: TouchSectionCardProps[] = [
   {
     icon: "https://web-images.credcdn.in/v2/_next/assets/images/cards/swipe-left.png?tr=orig",
@@ -35,7 +31,7 @@ const cards: TouchSectionCardProps[] = [
   },
 ];
 
-const TouchCardsSection: React.FC<TouchCardsSectionProps> = ({ isMobile }) => {
+const TouchCardsSection = () => {
   return (
     <section className="h-screen w-full flex flex-col justify-center py-[100px] md:py-[125px] px-[30px] lg:px-40 xl:p-[125px] gap-10 box-border">
       <h1 className={cn(styles["title"], "text-gradient")}>

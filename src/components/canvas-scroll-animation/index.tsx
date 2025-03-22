@@ -3,6 +3,8 @@ import { useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import cn from "@utils/cn";
+import useLayoutStore, { DeviceType } from "@stores/layout-store";
+import useElementVisibility from "@hooks/useVisibility";
 
 type EaseString =
   | "none"
@@ -57,6 +59,7 @@ type CanvasScrollProps = {
   easeTo?: EaseString;
   easeUpdate?: EaseString;
   duration?: number;
+  device: DeviceType;
 };
 
 const CanvasScrollAnimation = ({
@@ -67,6 +70,7 @@ const CanvasScrollAnimation = ({
   easeTo = "power1.inOut",
   easeUpdate = "power1.in",
   duration = 0.15,
+  device,
 }: CanvasScrollProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -76,11 +80,11 @@ const CanvasScrollAnimation = ({
 
   const images = useMemo(() => {
     if (typeof window === "undefined") return [];
-
+    let _href = href.replace("{device}", device);
     return Array.from({ length: frameCount }, (_, i) => {
       const img = new Image();
-      img.src = href.replace("{id}", i.toString());
 
+      img.src = _href.replace("{id}", i.toString());
       img.onload = () => loadedImages.current.add(i);
       img.onerror = () => console.error(`Failed to load image: ${img.src}`);
 
@@ -97,19 +101,23 @@ const CanvasScrollAnimation = ({
 
     const setCanvasSize = () => {
       if (!canvas) return;
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.parentElement?.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2
+      const rect = canvas.getBoundingClientRect();
 
-      canvas.width = (rect?.width || window.innerWidth) * dpr;
-      canvas.height = (rect?.height || window.innerHeight) * dpr;
+      // // Set display size
+      // canvas.style.width = "100%";
+      // canvas.style.height = "100vh";
 
-      ctxRef.current?.scale(dpr, dpr);
+      // // Set actual size
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+
+      ctxRef.current!.scale(dpr, dpr);
+      ctxRef.current!.imageSmoothingEnabled = true;
+      ctxRef.current!.imageSmoothingQuality = "high";
     };
 
     setCanvasSize();
-    const resizeObserver = new ResizeObserver(setCanvasSize);
-    resizeObserver.observe(canvas.parentElement!);
-
     const updateFrame = (targetProgress: number) => {
       gsap.to(smoothProgress, {
         current: targetProgress,
@@ -149,7 +157,6 @@ const CanvasScrollAnimation = ({
     });
 
     return () => {
-      resizeObserver.disconnect();
       scrollTriggerInstance.kill();
       gsap.killTweensOf(smoothProgress);
     };
@@ -159,10 +166,21 @@ const CanvasScrollAnimation = ({
     <section className={cn(`relative h-[200vh]`, containerClassName)}>
       <canvas
         ref={canvasRef}
-        className={cn("sticky top-0 w-full h-screen", canvasClassName)}
+        className={cn("sticky top-0 h-screen w-full", canvasClassName)}
       />
     </section>
   );
 };
 
-export default CanvasScrollAnimation;
+const CanvasScrollAnimationLazy = (props: CanvasScrollProps) => {
+  const { ref, isVisible } = useElementVisibility(0.1);
+  if (isVisible) return <CanvasScrollAnimation {...props} />;
+  return (
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className="h-screen w-full"
+    />
+  );
+};
+
+export default CanvasScrollAnimationLazy;

@@ -1,0 +1,12 @@
+.route {
+  @apply gap-5 mt-[40px] min-w-[50%] h-max flex items-center uppercase cursor-pointer animate-fadein 
+  text-[28.08px] font-medium leading-[37.44px] tracking-[6px] text-white/70;
+}
+
+.route img {
+  @apply w-[53px] h-auto aspect-square;
+}
+
+.route span {
+  @apply whitespace-nowrap;
+}

@@ -10,21 +10,31 @@ import SSCanvasScrollSection from "@containers/ss-canvas-scroll-section";
 import PerksCanvasScrollSection from "@containers/perks-canvas-scroll-section";
 import ProtectDividerSection from "@containers/protect-divider-section";
 import CallToActionSection from "@containers/call-to-action-section";
+import FaqsSection from "@containers/faqs-section";
+import { DeviceType } from "@stores/layout-store";
+
+const parseDeviceType = (type?: string): DeviceType => {
+  if (type === "mobile") return "mobile";
+  if (type === "tablet") return "tablet";
+  return "desktop";
+};
 
 export default async function Home() {
   const { device } = userAgent({ headers: await headers() });
+  const type = parseDeviceType(device.type);
   return (
     <>
-      {/* <HeroSection /> */}
+      <HeroSection isMobile={type === "mobile"} />
       <HeadlineSection />
-      {/* <MultiCCVideoSection isMobile={device.type === "mobile"} /> */}
-      {/* <UnbilledCanvasScroll /> */}
-      {/* <LiveUpdatesVideoSection isMobile={device.type === "mobile"} /> */}
-      {/* <TouchCardsSection /> */}
-      {/* <SSCanvasScrollSection /> */}
-      <PerksCanvasScrollSection />
+      <MultiCCVideoSection isMobile={type === "mobile"} />
+      <UnbilledCanvasScroll device={type} />
+      <LiveUpdatesVideoSection isMobile={type === "mobile"} />
+      <TouchCardsSection />
+      <SSCanvasScrollSection device={type} />
+      <PerksCanvasScrollSection device={type} />
       <ProtectDividerSection />
-      <CallToActionSection isMobile={device.type === "mobile"} />
+      <CallToActionSection isMobile={type === "mobile"} />
+      <FaqsSection />
     </>
   );
 }

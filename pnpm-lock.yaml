@@ -26,6 +26,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      react-responsive-masonry:
+        specifier: ^2.7.1
+        version: 2.7.1
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.0.2
@@ -48,6 +51,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.0.4(@types/react@19.0.11)
+      '@types/react-responsive-masonry':
+        specifier: ^2.6.0
+        version: 2.6.0
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
@@ -451,6 +457,9 @@ packages:
     resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
     peerDependencies:
       '@types/react': ^19.0.0
+
+  '@types/react-responsive-masonry@2.6.0':
+    resolution: {integrity: sha512-MF2ql1CjzOoL9fLWp6L3ABoyzBUP/YV71wyb3Fx+cViYNj7+tq3gDCllZHbLg1LQfGOQOEGbV2P7TOcUeGiR6w==}
 
   '@types/react@19.0.11':
     resolution: {integrity: sha512-vrdxRZfo9ALXth6yPfV16PYTLZwsUWhVjjC+DkfE5t1suNSbBrWC9YqSuuxJZ8Ps6z1o2ycRpIqzZJIgklq4Tw==}
@@ -1657,6 +1666,9 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  react-responsive-masonry@2.7.1:
+    resolution: {integrity: sha512-Q+u+nOH87PzjqGFd2PgTcmLpHPZnCmUPREHYoNBc8dwJv6fi51p9U6hqwG8g/T8MN86HrFjrU+uQU6yvETU7cA==}
+
   react@19.0.0:
     resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
     engines: {node: '>=0.10.0'}
@@ -2326,6 +2338,10 @@ snapshots:
       undici-types: 6.19.8
 
   '@types/react-dom@19.0.4(@types/react@19.0.11)':
+    dependencies:
+      '@types/react': 19.0.11
+
+  '@types/react-responsive-masonry@2.6.0':
     dependencies:
       '@types/react': 19.0.11
 
@@ -3685,6 +3701,8 @@ snapshots:
       scheduler: 0.25.0
 
   react-is@16.13.1: {}
+
+  react-responsive-masonry@2.7.1: {}
 
   react@19.0.0: {}
 

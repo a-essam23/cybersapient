@@ -1,0 +1,24 @@
+.container {
+  @apply relative z-[1] overflow-hidden w-full p-8 
+         flex items-end cursor-pointer 
+         border-b border-white/20 
+         text-white/40 text-[24px] font-medium leading-[28px] tracking-[6px] uppercase
+         transition-colors duration-300 ease-in-out;
+}
+
+.container::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 80%;
+  height: 100%;
+  transition: opacity 0.5s;
+  background: radial-gradient(
+    506.71% 128.77% at 24.44% 36.7%,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.2) 97.72%
+  );
+  filter: blur(48.78px);
+}

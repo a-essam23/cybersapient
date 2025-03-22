@@ -4,6 +4,10 @@ import Navbar from "@/components/layout/navbar";
 import denton from "@styles/fonts/denton";
 import gilroy from "@styles/fonts/gilroy";
 import "./globals.css";
+import Footer from "@components/layout/footer";
+import { userAgent } from "next/server";
+import { headers } from "next/headers";
+import Providers from "@/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -39,10 +43,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${denton.variable} ${gilroy.className} antialiased`}
+        className={`select-none ${geistSans.variable} ${geistMono.variable} ${denton.variable} ${gilroy.className} antialiased`}
       >
         <Navbar />
         <main className="flex flex-col">{children}</main>
+        <Footer />
+        <Providers />
       </body>
     </html>
   );

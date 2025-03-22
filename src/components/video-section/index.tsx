@@ -41,7 +41,6 @@ const LockedVideoSection: React.FC<LockedVideoSectionProps> = ({
 
   useEffect(() => {
     if (videoPlayed) return;
-    console.log(isVisible);
     if (isVisible && !videoPlayed && videoRef.current) {
       videoRef.current.scrollIntoView({ behavior: "smooth" });
       if (!isMobile && lock) toggleScroll(true);
