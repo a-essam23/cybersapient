@@ -2,13 +2,13 @@
 
 ## Overview
 
-This repository contains my implementation of the front-end developer assessment task. I've built a responsive landing page using Next.js with various interactive components including navigation, animations, video sections, and more.
+This repository contains my implementation of the front-end developer assessment task.
+**[🔗 Live Preview](https://cybersapient.vercel.app/)** | **[💻 GitHub Repository](https://github.com/a-essam23/cybersapient)**
 
 ## Features Implemented
 
 - **Responsive Design**:
   - Fully responsive layout for all screen sizes
-    - Mobile navigation with hamburger menu
     - Responsive videos and video posters
     - Font scaling across different devices
 - **Interactive Components**:
@@ -17,7 +17,6 @@ This repository contains my implementation of the front-end developer assessment
   - Canvas-based scroll animations
   - Touch card sections with carousel functionality
 - **Performance Optimizations**:
-  - Improved canvas scrolling animations
   - Optimized asset loading
 - **SEO & Sharing**:
   - Added OpenGraph metadata
@@ -72,9 +71,10 @@ This repository contains my implementation of the front-end developer assessment
 
 Given more time, I would implement the following improvements:
 
-1. **Performance Optimization**: Replace canvas scroll animations with optimized videos, as the current implementation loads almost 300MB of image data. This would significantly reduce load times and improve overall performance.
-2. **Standardized Video Structure**: Implement a fixed video naming convention to allow for easier dynamic replacement and consistent responsivity across different screen sizes.
-3. 4. **Accessibility Enhancements**: Further improve accessibility by adding ARIA attributes, keyboard navigation, and screen reader support throughout the application.
+1. **Performance Optimization**: Replace canvas scroll animations with optimized videos, as the current implementation loads almost 250MB of image data. This would significantly reduce load times and improve overall performance.
+2. **Tailwind CSS Optimization**: Create reusable utility class combinations using Tailwind's @apply directive to reduce repetitive class strings across components. This would decrease boilerplate code, maintain consistency, and increase development efficiency while keeping the flexibility of Tailwind's utility-first approach.
+3. **Standardized Video Structure**: Implement a fixed video naming convention to allow for easier dynamic replacement and consistent responsivity across different screen sizes.
+4. 4. **Accessibility Enhancements**: Further improve accessibility by adding ARIA attributes, keyboard navigation, and screen reader support throughout the application.
 
 ---
 
