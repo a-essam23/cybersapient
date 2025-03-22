@@ -1,6 +1,6 @@
 "use client";
 import NowLiveButton from "@components/now-live-button";
-import useLayoutStore, { IRoute } from "@stores/layout-store";
+import { IRoute } from "@stores/layout-store";
 import NavbarWhatsNewTabCard from "./navbar-whats-new-tab-card";
 
 interface WhatsNewCardItem extends IRoute {
@@ -34,10 +34,7 @@ const routes: WhatsNewCardItem[] = [
   },
 ];
 
-const NavbarWhatsNewTab: React.FC<{}> = () => {
-  const {
-    dimensions: { isDesktop },
-  } = useLayoutStore();
+const NavbarWhatsNewTab: React.FC = () => {
   return (
     <>
       <ol className="flex lg:flex-col flex-nowrap gap-[20px] lg:gap-[45px]">

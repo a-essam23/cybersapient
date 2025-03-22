@@ -11,13 +11,7 @@ import PerksCanvasScrollSection from "@containers/perks-canvas-scroll-section";
 import ProtectDividerSection from "@containers/protect-divider-section";
 import CallToActionSection from "@containers/call-to-action-section";
 import FaqsSection from "@containers/faqs-section";
-import { DeviceType } from "@stores/layout-store";
-
-const parseDeviceType = (type?: string): DeviceType => {
-  if (type === "mobile") return "mobile";
-  if (type === "tablet") return "tablet";
-  return "desktop";
-};
+import { parseDeviceType } from "@utils/index";
 
 export default async function Home() {
   const { device } = userAgent({ headers: await headers() });

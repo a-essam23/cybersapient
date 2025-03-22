@@ -42,6 +42,7 @@ const Accordion = ({
     }
   };
 
+  // eslint-disable-next-line
   const _className = useMemo(() => className?.(isOpen) ?? "", [isOpen]);
 
   return (

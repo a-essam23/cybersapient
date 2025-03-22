@@ -3,7 +3,7 @@ import { useRef, useEffect, useMemo, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import cn from "@utils/cn";
-import useLayoutStore, { DeviceType } from "@stores/layout-store";
+import { DeviceType } from "@stores/layout-store";
 import useElementVisibility from "@hooks/useVisibility";
 
 type EaseString =
@@ -80,7 +80,7 @@ const CanvasScrollAnimation = ({
 
   const images = useMemo(() => {
     if (typeof window === "undefined") return [];
-    let _href = href.replace("{device}", device);
+    const _href = href.replace("{device}", device);
     return Array.from({ length: frameCount }, (_, i) => {
       const img = new Image();
 
@@ -166,6 +166,7 @@ const CanvasScrollAnimation = ({
       scrollTriggerInstance.kill();
       gsap.killTweensOf(smoothProgress);
     };
+    // eslint-disable-next-line
   }, [frameCount, images]);
 
   return (

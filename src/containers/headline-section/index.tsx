@@ -10,18 +10,19 @@ const HeadlineSection = () => {
       <div className="max-w-[800px] flex flex-col h-full justify-center items-center">
         <p className={styles.slogan}>credit card management. reimagined.</p>
         <h1 className={cn(styles.title, "text-gradient")}>
-          everything you need.{"\n"}
-          nothing you don't.
+          {"everything you need."}
+          {"\n"}
+          {"nothing you don't."}
         </h1>
 
         <p className={styles.description}>
-          welcome to a credit card experience designed to feel like second
+          {`welcome to a credit card experience designed to feel like second
           nature. like muscle memory. life's logistics demand enough of your
           time, effort, and attention—managing your credit cards shouldn't add
-          to the list.
+          to the list.`}
         </p>
         <p className={styles.d}>
-          you can put your admin duties to rest. for good.
+          {"you can put your admin duties to rest. for good."}
         </p>
       </div>
     </section>

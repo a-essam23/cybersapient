@@ -40,6 +40,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { device } = userAgent({ headers: await headers() });
   return (
     <html lang="en">
       <body
@@ -48,7 +49,7 @@ export default async function RootLayout({
         <Navbar />
         <main className="flex flex-col">{children}</main>
         <Footer />
-        <Providers />
+        <Providers device={device.type} />
       </body>
     </html>
   );

@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import NavbarBurger from "./navbar-burger";
 import useLayoutStore, { IRoute, routes } from "@stores/layout-store";

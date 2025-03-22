@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export type DeviceType = "mobile" | "tablet" | "desktop";
 
-// Debounce helper function
+// eslint-disable-next-line
 const debounce = <T extends (...args: any[]) => void>(
   func: T,
   wait: number
