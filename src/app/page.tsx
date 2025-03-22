@@ -24,16 +24,16 @@ export default async function Home() {
   const type = parseDeviceType(device.type);
   return (
     <>
-      <HeroSection isMobile={type === "mobile"} />
+      {/* <HeroSection isMobile={type === "mobile"} /> */}
       <HeadlineSection />
-      <MultiCCVideoSection isMobile={type === "mobile"} />
+      {/* <MultiCCVideoSection isMobile={type === "mobile"} /> */}
       <UnbilledCanvasScroll device={type} />
-      <LiveUpdatesVideoSection isMobile={type === "mobile"} />
+      {/* <LiveUpdatesVideoSection isMobile={type === "mobile"} /> */}
       <TouchCardsSection />
       <SSCanvasScrollSection device={type} />
       <PerksCanvasScrollSection device={type} />
       <ProtectDividerSection />
-      <CallToActionSection isMobile={type === "mobile"} />
+      {/* <CallToActionSection isMobile={type === "mobile"} /> */}
       <FaqsSection />
     </>
   );

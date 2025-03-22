@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import cn from "@utils/cn";
@@ -101,23 +101,27 @@ const CanvasScrollAnimation = ({
 
     const setCanvasSize = () => {
       if (!canvas) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2
+      const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
 
-      // // Set display size
-      // canvas.style.width = "100%";
-      // canvas.style.height = "100vh";
+      // Set display dimensions (CSS pixels)
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
 
-      // // Set actual size
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      // Set actual dimensions (physical pixels)
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
 
-      ctxRef.current!.scale(dpr, dpr);
+      // Scale context to account for DPR
+      ctxRef.current!.scale(1, 1);
       ctxRef.current!.imageSmoothingEnabled = true;
       ctxRef.current!.imageSmoothingQuality = "high";
     };
 
     setCanvasSize();
+    const resizeObserver = new ResizeObserver(setCanvasSize);
+    resizeObserver.observe(canvas.parentElement!);
+
     const updateFrame = (targetProgress: number) => {
       gsap.to(smoothProgress, {
         current: targetProgress,
@@ -157,6 +161,8 @@ const CanvasScrollAnimation = ({
     });
 
     return () => {
+      resizeObserver.disconnect();
+
       scrollTriggerInstance.kill();
       gsap.killTweensOf(smoothProgress);
     };
@@ -174,12 +180,21 @@ const CanvasScrollAnimation = ({
 
 const CanvasScrollAnimationLazy = (props: CanvasScrollProps) => {
   const { ref, isVisible } = useElementVisibility(0.1);
-  if (isVisible) return <CanvasScrollAnimation {...props} />;
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    if (isVisible) {
+      setShouldRender(true);
+    }
+  }, [isVisible]);
+
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className="h-screen w-full"
-    />
+      className="min-h-screen w-full"
+    >
+      {shouldRender && <CanvasScrollAnimation {...props} />}
+    </div>
   );
 };
 
