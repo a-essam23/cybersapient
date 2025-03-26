@@ -33,7 +33,7 @@ const cards: TouchSectionCardProps[] = [
 
 const TouchCardsSection = () => {
   return (
-    <section className="h-screen w-full flex flex-col justify-center py-[100px] md:py-[125px] px-[30px] lg:px-40 xl:p-[125px] gap-10 box-border">
+    <section className="min-h-screen w-full flex flex-col justify-center py-[100px] md:py-[125px] px-[30px] lg:px-40 xl:p-[125px] gap-10 box-border">
       <h1 className={cn(styles["title"], "text-gradient")}>
         every touch is{"\n"} pure power.
       </h1>
